@@ -1,6 +1,7 @@
 #include "DxLib.h"
 
 #include "GameManager.h"
+#include "Ship.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -18,10 +19,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	    return -1;			// エラーが起きたら直ちに終了
     }
 
+
+    Ship myShip;
+
     //! 実行時にOSからのメッセージを受け取る、もしくは、Escapeキーが押されるまで実行する
     while (ProcessMessage() == false && CheckHitKey(KEY_INPUT_ESCAPE) == FALSE)
     {
+        ClearDrawScreen();
 
+        myShip.Update();
+        myShip.Render();
+
+        ScreenFlip();
     }
 
 
